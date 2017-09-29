@@ -79,7 +79,8 @@ class NewTransactionForm extends Component {
     
     if (success && updatedTransactions && updatedBalance) {
       this.props.hideModal();
-      this.props.addNewTransaction(this.props.selectedFriend, updatedBalance, updatedTransactions); //update store
+      this.props.addNewTransaction(this.props.selectedFriend.friendId, updatedBalance, updatedTransactions);
+      //update store
     } else {
       this.setState({ posting: false, errorMessage: message  });
     }
