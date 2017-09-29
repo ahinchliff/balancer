@@ -22,7 +22,7 @@ class FriendList extends Component {
     return this.props.friendList.map((friend) => {
       let balanceStyling;
       if (friend.balance > 0) { balanceStyling = positiveBalanceStyle}
-      if (friend.balance == 0) { balanceStyling = neutralBalanceStyle} 
+      if (friend.balance === 0 || friend.balance === -0) { balanceStyling = neutralBalanceStyle} 
       if (friend.balance < 0) { balanceStyling = negativeBalanceStyle} 
       return (
         <tr
