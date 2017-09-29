@@ -36,14 +36,12 @@ class Index extends Component {
                   password: abc123
                 </blockquote>
                 <p className="flow-text" style={{fontSize: '1.1em'}}>
-                  Building this project involved a lot of firsts for me. It is the first project I have built outside my studies, the first time I have developed on Node.js and the first time I have created a client-side app or used React. It is therefore a little rough around the edges (client side validation, resposive web design etc). 
+                  Building this project involved a lot of firsts for me. It is the first project I have built outside my studies, the first time I have developed on Node.js and the first time I have created a client-side app or used React. It is therefore a little rough around the edges. 
                 </p> 
                 <p className="flow-text" style={{fontSize: '1.1em', marginTop: '1em'}}>
                   I'm currently researching best practices in multiple areas with the goal of improving Balancer and my overall coding ability. If your company is on the lookout for a web developer intern please don't hesitate to get in contact.
                 </p>
                 <p className="flow-text" style={{fontSize: '1.1em', marginTop: '1em'}}>
-                  Kind Regards,
-                  <br></br>
                   Anthony
                 </p>
               </div>
