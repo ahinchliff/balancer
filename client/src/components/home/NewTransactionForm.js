@@ -77,7 +77,7 @@ class NewTransactionForm extends Component {
     const res = await axios.post('/api/transactions/new', values);
     const { success, message, updatedTransactions, updatedBalance } = res.data;
     
-    if (success && updatedTransactions && updatedBalance) {
+    if (success && updatedTransactions) {
       this.props.hideModal();
       this.props.addNewTransaction(this.props.selectedFriend.friendId, updatedBalance, updatedTransactions);
       //update store

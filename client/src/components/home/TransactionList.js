@@ -74,12 +74,12 @@ class TransactionList extends Component {
 
   render(){
     return (
-      <div className="col s5 white" style={{height: 'calc(100vh - 64px', padding: 0, position: 'relative'}}>
+      <div className="col s5 white" style={{height: 'calc(100vh - 64px', padding: 0, position: 'relative', overflowY: 'auto'}}>
         {this.generateTable()}
         {this.generateLoadingOrEmpty()}
         {this.props.selectedFriend && <a 
           className="btn-floating btn-large waves-effect waves-light red"
-          style={{position: 'absolute', bottom: '30px', right: '30px'}}
+          style={{position: 'fixed', bottom: '30px', right: '30px'}}
           onClick={()=>{this.toggleNewTransactionModal()}}
         >
           <i className="material-icons">add</i>
