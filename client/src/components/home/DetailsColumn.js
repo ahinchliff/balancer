@@ -30,7 +30,9 @@ class DetailsColumn extends Component {
 
   columnHeader() {
     return (
-      <div className="orange" style={{height: '55px'}}></div>
+      <div className="orange white-text valign-wrapper" style={{height: '55px'}}>
+        <p className="center-align" style={{width: '100%'}}>LEDGER</p>
+      </div>
     );
   };
 
