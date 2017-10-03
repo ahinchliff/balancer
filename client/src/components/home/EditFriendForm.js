@@ -69,7 +69,7 @@ class EditFriendForm extends Component {
     this.setState({ posting: true, errorMessage: null })
     values.friendId = this.props.selectedFriend.friendId;
     
-    const res = await axios.post('/api/friends/edit', values);
+    const res = await axios.put('/api/friends/edit', values);
     const { success, message, updatedFriend } = res.data;
 
     if (success && updatedFriend) {
@@ -83,7 +83,7 @@ class EditFriendForm extends Component {
   async postDeleteFriend() {
     this.setState({ posting: true, errorMessage: null });
     const friendId = this.props.selectedFriend.friendId;
-    const res = await axios.post('/api/friends/delete', { friendId });
+    const res = await axios.delete(`/api/friends/${friendId}`);
     const { success, message } = res.data;
     if (success) {
       this.props.hideModal();

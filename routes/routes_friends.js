@@ -24,7 +24,7 @@ module.exports = app => {
     res.send(transactions.transactions);
   });
 
-  app.post('/api/friends/new', requireLogin, async (req, res) => {
+  app.post('/api/friends', requireLogin, async (req, res) => {
     const { name, description, amount, userPayee = false } = req.body;
     const existingFriend = await Friend.findOne({ 'name': name });
 
@@ -52,8 +52,8 @@ module.exports = app => {
     }
   });
 
-  app.post('/api/friends/delete', requireLogin, async (req, res) => {
-    const { friendId } =  req.body;
+  app.delete('/api/friends/:id', requireLogin, async (req, res) => {
+    const friendId = req.params.id;
     const user = req.user.id;
 
     if (!friendId) { res.send({ success: false, message: 'Error: A friendId is required' })}
@@ -65,7 +65,7 @@ module.exports = app => {
     
   });
 
-  app.post('/api/friends/edit', requireLogin, async (req, res) => {
+  app.put('/api/friends/edit', requireLogin, async (req, res) => {
     const { name, friendId } = req.body;
     const user = req.user.id;
     

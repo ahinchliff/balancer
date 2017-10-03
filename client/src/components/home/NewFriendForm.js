@@ -88,7 +88,7 @@ class NewFriendForm extends Component {
   async postFriend(values) {
     this.setState({ posting: true, errorMessage: null })
    
-    const res = await axios.post('/api/friends/new', values);
+    const res = await axios.post('/api/friends', values);
     const { success, message, newFriend } = res.data;
     
     if (success && newFriend) {
