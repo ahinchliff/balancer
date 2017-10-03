@@ -74,7 +74,7 @@ class NewTransactionForm extends Component {
     this.setState({ posting: true, errorMessage: null })
     values.friendId = this.props.selectedFriend.friendId;
    
-    const res = await axios.post('/api/transactions/new', values);
+    const res = await axios.post('/api/transactions/', values);
     const { success, message, updatedTransactions, updatedBalance } = res.data;
     
     if (success && updatedTransactions) {
