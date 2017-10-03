@@ -6,7 +6,6 @@ class Index extends Component {
 
   componentDidMount() {
     if (this.props.user) {
-      console.log("hello");
       this.props.history.push("/home")
     }
   }

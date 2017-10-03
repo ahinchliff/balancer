@@ -51,4 +51,29 @@ module.exports = app => {
 
     }
   });
+
+  app.post('/api/friends/delete', requireLogin, async (req, res) => {
+    const { friendId } =  req.body;
+    const user = req.user.id;
+
+    if (!friendId) { res.send({ success: false, message: 'Error: A friendId is required' })}
+
+    const friend = await Friend.findOne({ _id: friendId, _user: user });
+    if (!friend) {return res.send({ success: false, message: "That friend could not be found"})}
+    res.send({ success: true });
+    friend.remove().exec();
+    
+  });
+
+  app.post('/api/friends/edit', requireLogin, async (req, res) => {
+    const { name, friendId } = req.body;
+    const user = req.user.id;
+    
+    if (!name) { return res.send({ success: false, message: "You need to include a new name!"})}
+    
+    const friend = await Friend.findOne({ _id: friendId, _user: user });
+    friend.name = name;
+    const updatedFriend = await friend.save();
+    res.send({ success: true, updatedFriend });
+  });
 }

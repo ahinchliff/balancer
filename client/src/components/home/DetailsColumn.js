@@ -1,34 +1,75 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DetailsTable from './DetailsTable';
 import Preloader from '../misc/Preloader';
+import Modal from '../misc/Modal';
+import EditFriendForm from './EditFriendForm';
 
 
-const DetailsColumn = (props) => {
+class DetailsColumn extends Component {
 
-  const { selectedFriend, transactionList } = props;
-  const emptyLedger = (
-    <div className="center-align" style={{padding: '100px 40px',}}>
-      Select a friend to view their ledger...
-    </div>
-  );
-  const loadingTransactionList = (
-    <div className="center-align" style={{paddingTop: '100px'}}>
-      <Preloader />
-    </div>
-  );
-  
-  return (
-    <div className="col s4 blue-grey lighten-5" style={{height: 'calc(100vh - 64px', padding: 0}}>
-      <div className="orange white-text valign-wrapper" style={{height: '55px', textAlign: 'center'}}>
-        <p style={{width: '100%'}}>LEDGER</p>
+  state = {
+    displayEditFriendModal: false,
+  }
+
+  emptyLedger() {
+    return (
+      <div className="center-align" style={{padding: '100px 40px',}}>
+        Select a friend to view their ledger...
       </div>
-      {selectedFriend && transactionList && <DetailsTable transactionList={transactionList} selectedFriend={selectedFriend}/>}
-      {!selectedFriend && emptyLedger}
-      {selectedFriend && !transactionList && loadingTransactionList}
+    );
+  };
 
-    </div>
-  );
+  loadingTransactionList() {
+    return (
+      <div className="center-align" style={{paddingTop: '100px'}}>
+        <Preloader />
+      </div>
+    );
+  };
+
+  columnHeader() {
+    return (
+      <div className="orange" style={{height: '55px'}}></div>
+    );
+  };
+
+  editFriendButton() {
+    return (
+      <a 
+        onClick={()=>{this.toggleEditFriendModal()}}
+        className="waves-effect waves-light btn-large col s12 orange"
+        style={{borderRadius: 0}}
+      >
+        {this.props.selectedFriend && this.props.selectedFriend.friendName.toUpperCase()}
+        <i className="material-icons right">edit</i>
+      </a>
+    );
+  };
+
+  toggleEditFriendModal() {
+    this.setState({ displayEditFriendModal: this.state.displayEditFriendModal ? false : true });
+  }
+
+  render() {
+    return (
+      <div className="col s4 white" style={{height: 'calc(100vh - 64px', padding: 0}}>
+        {this.props.selectedFriend ? this.editFriendButton() : this.columnHeader()}
+        {this.props.selectedFriend && this.props.transactionList && <DetailsTable transactionList={this.props.transactionList} selectedFriend={this.props.selectedFriend}/>}
+        {!this.props.selectedFriend && this.emptyLedger()}
+        {this.props.selectedFriend && !this.props.transactionList && this.loadingTransactionList()}
+        {
+          this.state.displayEditFriendModal && 
+          <Modal 
+            heading ={`Edit ${this.props.selectedFriend.friendName}`} 
+            hideModal={this.toggleEditFriendModal.bind(this)}
+            component={<EditFriendForm hideModal={this.toggleEditFriendModal.bind(this)}/>}
+          />
+        }
+      </div>
+      
+    );
+  }
 }
 
 function mapStateToProps({ transactionList, selectedFriend }) {

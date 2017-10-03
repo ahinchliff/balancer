@@ -74,7 +74,7 @@ class TransactionList extends Component {
 
   render(){
     return (
-      <div className="col s5 white" style={{height: 'calc(100vh - 64px', padding: 0, position: 'relative', overflowY: 'auto'}}>
+      <div className="col s5 blue-grey lighten-5" style={{height: 'calc(100vh - 64px', padding: 0, position: 'relative', overflowY: 'auto'}}>
         {this.generateTable()}
         {this.generateLoadingOrEmpty()}
         {this.props.selectedFriend && <a 
