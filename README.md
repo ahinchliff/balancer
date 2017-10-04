@@ -15,6 +15,9 @@ I am learning web development. This is my first project outside of my studies an
 $ git clone https://github.com/ahinchliff/balancer
 $ cd balancer
 $ npm install
+$ cd client
+$ npm install
+cd ..
 ```
 
 Add file config/devKeys with your mongodb URI and cookie key
