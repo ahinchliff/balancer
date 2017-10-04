@@ -17,7 +17,7 @@ $ cd balancer
 $ npm install
 $ cd client
 $ npm install
-cd ..
+$cd ..
 ```
 
 Add file config/devKeys with your mongodb URI and cookie key
